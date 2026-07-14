@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- vim.lsp.inlay_hint.enable(true)
+vim.lsp.inlay_hint.enable(true)
 
 local severity = vim.diagnostic.severity
 
@@ -65,4 +65,14 @@ vim.diagnostic.config({
       [severity.INFO] = " ",
     },
   },
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.yaml",
+  callback = function()
+    local content = vim.api.nvim_buf_get_lines(0, 0, 1, false)[1]
+    if content and (content:find("apiVersion") or content:find("kind:")) then
+      vim.bo.filetype = "yaml.kubernetes"
+    end
+  end,
 })

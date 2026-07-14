@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
-
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
@@ -21,3 +20,21 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+
+-- run programing lang
+keymap.set("n", "<leader>rf", function()
+  local filetype = vim.bo.filetype
+  if filetype == "lua" then
+    vim.cmd("!lua %")
+  elseif filetype == "python" then
+    vim.cmd("UVRunFile")
+  elseif filetype == "rust" then
+    if vim.fn.filereadable("Cargo.toml") == 1 then
+      vim.cmd("!cargo run")
+    else
+      vim.cmd("!rustc % && ./" .. vim.fn.expand("%:r"))
+    end
+  else
+    print("ده مش مدعوم للتشغيل حالياً: " .. filetype)
+  end
+end, { desc = "Run current file based on filetype" })

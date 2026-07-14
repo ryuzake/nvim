@@ -5,8 +5,13 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "lua_ls",
+        "terraformls",
+        "ansiblels",
+        "fish_lsp",
         -- "prismals",
         "pyright",
+        "yamlls",
+        "rust_analyzer",
       },
     },
     dependencies = {
@@ -31,9 +36,7 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        "isort", -- python formatter
-        "black", -- python formatter
-        "pylint",
+        "ruff",
         "eslint_d",
       },
     },
