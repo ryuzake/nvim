@@ -68,7 +68,7 @@ return {
       },
     })
     -- 5. باقي سيرفرات الـ DevOps
-    local servers = { "dockerls", "docker_compose_language_service", "ansiblels", "terraformls" }
+    local servers = { "dockerls", "docker_compose_language_service", "ansiblels", "terraformls", "terraform" }
     for _, server in ipairs(servers) do
       setup_server(server)
     end

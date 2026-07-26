@@ -34,7 +34,11 @@ keymap.set("n", "<leader>rf", function()
     else
       vim.cmd("!rustc % && ./" .. vim.fn.expand("%:r"))
     end
+  elseif filetype == "nim" then
+    vim.cmd("!nim r %")
+  elseif filetype == "go" then
+    vim.cmd("!go run %")
   else
-    print("ده مش مدعوم للتشغيل حالياً: " .. filetype)
+    print("this file type is not supported yet " .. filetype)
   end
 end, { desc = "Run current file based on filetype" })

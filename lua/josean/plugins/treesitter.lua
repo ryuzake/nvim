@@ -1,21 +1,16 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  version = "0.9.2",
   event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
   config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter.configs")
+    local configs = require("nvim-treesitter")
 
-    -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
+    configs.setup({
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
       },
-      -- enable indentation
       indent = { enable = true },
-      -- ensure these language parsers are installed
       ensure_installed = {
         "json",
         "terraform",
@@ -23,24 +18,17 @@ return {
         "python",
         "rust",
         "javascript",
-        "typescript",
-        "tsx",
         "yaml",
         "html",
         "css",
-        "prisma",
-        "markdown",
-        "markdown_inline",
-        "svelte",
-        "graphql",
         "bash",
         "lua",
         "vim",
         "dockerfile",
         "gitignore",
-        "query",
         "vimdoc",
-        "c",
+        "nim",
+        "go",
       },
       incremental_selection = {
         enable = true,
@@ -52,15 +40,10 @@ return {
         },
       },
     })
-
-    require("nvim-ts-autotag").setup({
-      opts = {
-        enable_close_on_slash = false,
-        -- أضف السطر ده عشان يعطل الإضافة في المارك داون
-        skip_tags = { "markdown" },
-      },
+    vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+      pattern = { "*.tf", "*.tfvars" },
+      command = "set filetype=terraform",
     })
-    -- use bash parser for zsh files
     vim.treesitter.language.register("bash", "zsh")
   end,
 }

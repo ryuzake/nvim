@@ -52,7 +52,7 @@ return {
   --  local transparent = true
 
   --  require("tokyonight").setup({
-  --    style = "night",
+  --    style = "night", -- [ night, storm ]
   --    transparent = transparent,
   --    --styles = {
   --    --  sidebars = transparent and "transparent" or "dark",
@@ -70,24 +70,47 @@ return {
   --end,
   --}
 
-  -- onedark
-  --"navarasu/onedark.nvim",
-  --priority = 1000, -- make sure to load this before all the other start plugins
-  --config = function()
-  --  require("onedark").setup({
-  --    style = "deep",
-  --  })
-  --  require("onedark").load()
+  -- ------------------------------------------- onedark
+  -- "navarasu/onedark.nvim",
+  -- priority = 1000, -- make sure to load this before all the other start plugins
+  -- config = function()
+  --   require("onedark").setup({
+  --     style = "dark", -- [dark, darker, cool, deep, warm, warmer, light]
+  --     transparent = true,
+  --   })
+  --   require("onedark").load()
 
-  -- tokyodark
+  -- -------------------------------------------- tokyodark
   "tiagovla/tokyodark.nvim",
-  --opts = {
-  --  -- custom options here
-  --},
-  config = function(_, opts)
+  config = function(_)
     require("tokyodark").setup() -- calling setup is optional
     vim.cmd([[colorscheme tokyodark]])
 
+    -- -------------------------------------------- catppuccin
+    -- "catppuccin/nvim",
+    -- name = "catppuccin",
+    -- priority = 1000,
+    -- config = function()
+    --   require("catppuccin").setup({
+    --     flavour = "mocha", -- latte, frappe, macchiato, mocha
+    --     transparent_background = true,
+    --     -- background = {
+    --     --   light = "latte",
+    --     --   dark = "mocha",
+    --     -- },
+    --     integrations = {
+    --       treesitter = true,
+    --       native_lsp = { enabled = true },
+    --     },
+    --     float = {
+    --       transparent = true,
+    --       solid = true,
+    --     },
+    --     mason = true,
+    --   })
+    --   vim.cmd.colorscheme("catppuccin")
+    --
+    ---------------------------------------------
     if vim.g.neovide then
       vim.g.neovide_opacity = 0.65
 
@@ -101,19 +124,5 @@ return {
       vim.api.nvim_set_hl(0, "Normal", { bg = "none", ctermbg = "none" })
       vim.api.nvim_set_hl(0, "NormalNC", { bg = "none", ctermbg = "none" })
     end
-    -- catppuccin
-    --"catppuccin/nvim",
-    --name = "catppuccin",
-    --priority = 1000,
-    --config = function()
-    --  require("catppuccin").setup({
-    --    flavour = "mocha", -- latte, frappe, macchiato, mocha
-    --    transparent_background = true,
-    --    integrations = {
-    --      treesitter = true,
-    --      native_lsp = { enabled = true },
-    --    },
-    --  })
-    --  vim.cmd.colorscheme("catppuccin")
   end,
 }

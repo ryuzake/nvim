@@ -8,10 +8,11 @@ return {
         "terraformls",
         "ansiblels",
         "fish_lsp",
-        -- "prismals",
         "pyright",
         "yamlls",
         "rust_analyzer",
+        "golangci_lint_ls",
+        "nim_langserver",
       },
     },
     dependencies = {
@@ -34,7 +35,6 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
       ensure_installed = {
-        "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "ruff",
         "eslint_d",
