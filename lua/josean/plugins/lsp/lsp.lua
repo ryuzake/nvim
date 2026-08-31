@@ -72,5 +72,36 @@ return {
     for _, server in ipairs(servers) do
       setup_server(server)
     end
+
+    -- ansiblels
+    vim.filetype.add({
+      pattern = {
+        -- Playbooks في المجلد الرئيسي أو أي مجلد فرعي
+        [".*/playbooks/.*%.ya?ml"] = "yaml.ansible",
+        [".*/playbook%.ya?ml"] = "yaml.ansible",
+        [".*/site%.ya?ml"] = "yaml.ansible",
+        [".*/main%.ya?ml"] = "yaml.ansible",
+
+        -- Roles (tasks, handlers, vars, defaults, meta)
+        [".*/roles/.*/tasks/.*%.ya?ml"] = "yaml.ansible",
+        [".*/roles/.*/handlers/.*%.ya?ml"] = "yaml.ansible",
+        [".*/roles/.*/vars/.*%.ya?ml"] = "yaml.ansible",
+        [".*/roles/.*/defaults/.*%.ya?ml"] = "yaml.ansible",
+        [".*/roles/.*/meta/.*%.ya?ml"] = "yaml.ansible",
+
+        -- Tasks أو Handlers منفصلة
+        [".*/tasks/.*%.ya?ml"] = "yaml.ansible",
+        [".*/handlers/.*%.ya?ml"] = "yaml.ansible",
+      },
+    })
+
+    -- jinja2
+    vim.filetype.add({
+      extension = {
+        j2 = "jinja",
+        jinja = "jinja",
+        jinja2 = "jinja",
+      },
+    })
   end,
 }

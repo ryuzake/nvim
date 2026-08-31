@@ -13,6 +13,7 @@ return {
         "rust_analyzer",
         "golangci_lint_ls",
         "nim_langserver",
+        "jinja_lsp",
       },
     },
     dependencies = {
